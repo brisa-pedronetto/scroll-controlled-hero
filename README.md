@@ -1,4 +1,4 @@
-# Scrolled control hero
+# Scroll-controlled hero
 
 Just a hero component with the ability to control a second page via scroll.
 
