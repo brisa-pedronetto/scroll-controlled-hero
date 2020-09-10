@@ -20,49 +20,65 @@ h2 {
 }
 
 .container {
+  height: 300vh;
   position: relative;
-  padding-top: 100vh;
 }
 
-/* All slides */
-.container > div {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+.inner {
+  position: relative;
   height: 100vh;
-
-  /* Text container */
-  > div:first-child {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-}
-
-/* Hero 1 */
-.container .slide:nth-child(1) {
-  width: 100%;
-  top: 0;
-  left: 0;
-  z-index: -1;
 
   &.fixed {
     position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
   }
 
-  &.absolute {
+  &.stay {
     position: absolute;
+    top: initial;
+    bottom: 0;
+    left: 0;
   }
+}
+
+/* All slides */
+.container .slide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+
+  display: grid;
+  grid-template-columns: 1fr 1fr;
 
   .content {
-    > div {
-      transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
+    > div {
       opacity: 1;
       transform: translateY(0);
 
       &.hide {
         opacity: 0;
-        transform: translateY(-8rem);
+      }
+    }
+  }
+}
+
+/* Hero 1 */
+.container .slide:nth-child(1) {
+  .content {
+    > div {
+      transition: opacity 1s 0.7s ease-out, transform 1s 0.7s ease-out;
+
+      &.hide {
+        transform: translateY(2rem);
+        transition: opacity 0.5s ease-out, transform 0.5s ease-out;
       }
     }
   }
@@ -78,7 +94,12 @@ h2 {
 .container .slide:nth-child(2) {
   .content {
     > div {
-      transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+      transition: opacity 1s 0.7s ease-out, transform 1s 0.7s ease-out;
+
+      &.hide {
+        transform: translateY(2rem);
+        transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+      }
     }
   }
 
@@ -87,26 +108,21 @@ h2 {
     background-size: cover;
     background-position: center;
     filter: grayscale(100%);
+    opacity: 0;
 
-    transform: translateX(100%);
-    transition: transform 0.2s ease-out;
+    // transform: translateX(100%);
+    // transition: transform 1.3s 0.2s cubic-bezier(0.5, 1, 0.89, 1);
+    transition: opacity 1s cubic-bezier(0.5, 1, 0.89, 1);
 
-    &.fixed {
-      position: fixed;
-      top: 0;
-      right: 0;
-      width: 50%;
-      height: 100%;
-    }
-
-    &.stay {
-      transform: translateX(0);
+    &.reveal {
+      opacity: 1;
+      // transform: translateX(0);
     }
   }
 }
 
 /* Temporary */
 .fake-content {
-  height: 100vh;
-  background: gold;
+  height: 70vh;
+  background: #232323;
 }
